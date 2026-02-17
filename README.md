@@ -8,7 +8,7 @@
 import os
 from itertools import cycle
 ```
-From the first lines, we notice libraries crucial for file management and repetetive cycles.
+From the first lines, we notice [library and module](https://docs.python.org/3/library/index.html) crucial for file management and repetetive cycles.
 ```python
 TARGET_DIR = "./files/"
 ```
@@ -18,7 +18,7 @@ def encrypt(filename, key):
     orig_bytes = None
     encrypted_bytes = bytearray()
 ```
-The encrypt function takes in the file and the key, then outputs the encrypted version of the file. The bytearray type is within the encrypted variable, it lets the programme to modify each byte individually.
+The encrypt function takes in the file and the key, then outputs the encrypted version of the file. The [bytearray type](https://docs.python.org/3/library/stdtypes.html) is within the encrypted variable, it lets the programme to modify each byte individually.
 ```python
  with open(TARGET_DIR + filename, "rb") as f:
         orig_bytes = bytearray(f.read() )
@@ -27,7 +27,7 @@ This function opens the file in binary mode (rb) and then reads all bytes.
 ```python
 encrypted_bytes = bytes(a ^ b for a, b in zip(orig_bytes, cycle(key)))
 ```
-This is the most important step of the encryption. It pairs each byte from the file with the corresponding byte from the key and then overwrites it. This process will repeat until the whole file is rewritten. This process and the mathematical operator ^ indicate the XOR encryption.
+This is the most important step of the encryption. It pairs each byte from the file with the corresponding byte from the key and then overwrites it. This process will repeat until the whole file is rewritten. This process and the mathematical operator ^ indicate the [XOR encryption](https://en.wikipedia.org/wiki/XOR_cipher).
 
 XOR stands for exclusive OR (OR is a logical function), it operates like this:
 | Bit X | Bit Y | X XOR Y |
@@ -69,7 +69,7 @@ The last part contains the key and block of tasks. The key will be randomly gene
 
 
 ## The solution
-Our task will be to extract the headers -> one of the encrypted files we received was called slon.png.enc, with a file extension .png, which is going to be our reference point. PNG header is always the same (for format identification or for the detection of corruption of the file). That means we will have the encrypted header, the original header header + first chunk (the first chunk after the header is called IHDR, with specific bytes which we know), hense we'll be able to recover the key. 
+Our task will be to extract the [file signatures](https://en.wikipedia.org/wiki/List_of_file_signatures) -> one of the encrypted files we received was called slon.png.enc, with a file extension .png, which is going to be our reference point. PNG signature is always the same (for format identification or for the detection of corruption of the file). That means we will have the encrypted signature, the original signature + first chunk (the first chunk after the signature is called IHDR, with specific bytes which we know), hense we'll be able to recover the key. 
 
 PNG header (8 bytes) + IHDR chunk (8 bytes)
 ```
