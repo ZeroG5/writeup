@@ -84,27 +84,18 @@ We are going to follow the rule:
 
 **key** = encryption ^ plaintext
 
+![The key](images/xor1.png)
 
 
 The key for decrypting is:
 ```
-83 82 d2 9e 05 59 cf 6f
+83 82 D2 9E 05 59 CF 6F 21 BE 0C B2 F9 7E 59 55
 ```
+Now we'll create a script for decrypting the two files with the recovered key. Here's is the recovery script for .txt file:
+
+![Script for decryption](images/decrypt.png)
+
+And that's it. If you want the flag you'll have to decrypt it yourself. I hope this write-up helped.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-```python
-
-```
