@@ -1,4 +1,7 @@
 # Ransomware challenge
+- ransomware.py
+- slon.png.enc
+- story.txt.enc
 ##  Breakdown of the .py file
 ![Ransomware.py](images/py.png)
 ```python
@@ -64,6 +67,22 @@ if __name__=="__main__":
 ```
 The last part contains the key and block of tasks. The key will be randomly generated (16 bytes). The programme looks inside the specific directory and loops through all the files inside it, prints the filenames and encrypts them. 
 
+
+## The solution
+Our task will be to extract the headers -> one of the encrypted files we received was called slon.png.enc, with a file extension .png, which is going to be our reference point. PNG header is always the same (for format identification and for the detection of corruption of the file). That means we will have the original header and the encrypted header, hense we'll be able to recover the key. 
+
+PNG header (fisrt 8 bytes)
+```
+89 50 4E 47 0D 0A 1A 0A
+```
+
+Encrypted header (first 8 bytes)
+```
+0a d2 9c d9 08 53 d5 65
+```
+8 bytes will be enough for key recovery because of its repetetivness. We are going to follow the rule:
+
+**key** = encryption ^ plaintext
 
 ```python
 
