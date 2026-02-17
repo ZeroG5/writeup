@@ -84,7 +84,7 @@ We are going to follow the rule:
 
 **key** = encryption ^ plaintext
 
-![The key](images/xor.png)
+
 
 The key for decrypting is:
 ```
